@@ -22,6 +22,8 @@ namespace Project_models.LearnBlazorModels
         public double Value1 { get; set; }
         public double Value2 { get; set; }
 
+        public IEnumerable<Demo_ProductProp> ProductProperties { get; set; }
+
         /*---------------------------------------------------*/
         /*product components for task*/
         public int price { get; set; }
@@ -29,6 +31,8 @@ namespace Project_models.LearnBlazorModels
         public bool Active { get; set; }
         public string currentlyInactive { get; set;}
         public string currentlyActive { get; set; }
+
+        /*------------------------------------*/
 
 
 

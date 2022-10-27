@@ -1,56 +1,57 @@
 ﻿@page "/LearnBlazor/BindProp"
 
-
-<h3>This is a tesing nav component</h3>
-
-@*--------------------------------------------------------------------------*@
-<h3>Forward</h3>
-Name : @Product.Name1
-<br />
-GOAT : @Product.IsActive1
-<br />
-Value : @Product.Value1 Million
-<br />
-Value :<input type="number" @bind-value="@Product.Value1" @bind-value:event="oninput" />
-
-@*--------------------------------------------------------------------------*@
-<h3>Defense</h3>
-Name : @Product.Name2
-<br />
-GOAT : @Product.IsActive2
-<br />
-Value : @Product.Value2 Million
-<br />Value :
-<input type="number" @bind-value="@Product.Value2" @bind-value:event="oninput" />
-
-@*--------------------------------------------------------------------------*@
-<h4>Product</h4>
-Name : @Product.Name3
-<br />
-Active : @Product.Active
-<br />
-Price : @Product.price USD
-<br/>
-
-<br />
-This Product is : @(Product.Active?"Active":"Inactive")
-
-<br />
-Active Status: <input type="checkbox" @bind-value="Product.Active" checked="@(Product.Active?"checked":null)" />
-<br />
-Price : <input type="number" @bind-value="@Product.price" @bind-value:event="oninput" />
+<div class="row">
 
 
+<div class="col-6 border p-3">
+    @*--------------------------------------------------------------------------*@
+    <h4 class="text-primary">Automobile</h4><hr />
+    Name : @Product.Name3
+    <br />
+    Active : @Product.Active
+    <br />
+    Price : @Product.price Pounds
+    <br />
+    Property Selected: @selectedProp
+    <br />
+    @if (!String.IsNullOrWhiteSpace(selectedProp))
+    {
+        <p>Property Value:@Product.ProductProperties.FirstOrDefault(u=>u.Key == selectedProp).Value</p>
+    }
+    This Product is:@(Product.Active ? "Active" : "Inactive")
+</div>
 
+<br />
 
+<div class="col-6 border p-3">
+    <h3 class="text-primary">Automobiles Status</h3><hr/>
+    <div>Active Status: <input type="checkbox" @bind-value="Product.Active" checked="@(Product.Active?"checked":null)" /></div>
+    <br />
+    <div>
+        Product Properties:
+        <select @bind="selectedProp">
+            @foreach (var prop in Product.ProductProperties)
+            {
+                <option value="@prop.Key">@prop.Key</option>
+            }
+        </select>
+    </div>
+        <br />
+    <div>
+        Price : <input type="number" @bind-value="@Product.price" @bind-value:event="oninput" />
+    </div>
+</div>
+</div>
 @code {
-    Project_models.LearnBlazorModels.Demo_Products Product = new()
+    private string selectedProp = "";
+
+    Demo_Products Product = new()
         {
             Id1 = 1,
             Name1 = "Cristiano Ronaldo",
             IsActive1 = true,
             Value1 = 120,
-       
+
             Id2 = 2,
             Name2 = "Virgil Van Dijk",
             IsActive2 = true,
@@ -60,6 +61,13 @@ Price : <input type="number" @bind-value="@Product.price" @bind-value:event="oni
             Name3 = "Nissan GT-R",
             price = 52000,
             Active = true,
+            ProductProperties = new List<Demo_ProductProp>()
+           {
+             new Demo_ProductProp { Id= 1, Key="Color",Value="Metallic Black"},
+             new Demo_ProductProp { Id = 2, Key = "Brand", Value="Alienware"},
+             new Demo_ProductProp { Id = 3, Key = "Size", Value="16.8'"}
+           }
+
         };
 
 
