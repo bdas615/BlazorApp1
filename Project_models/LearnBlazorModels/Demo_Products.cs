@@ -8,6 +8,11 @@ namespace Project_models.LearnBlazorModels
 {
     public class Demo_Products
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool IsActive { get; set; }
+        public double Price { get; set; }
+
         public int Id1 { get; set; }
         public int Id2 { get; set; }
 
@@ -22,7 +27,7 @@ namespace Project_models.LearnBlazorModels
         public double Value1 { get; set; }
         public double Value2 { get; set; }
 
-        public IEnumerable<Demo_ProductProp> ProductProperties { get; set; }
+        public List<Demo_ProductProp> ProductProperties { get; set; }
 
         /*---------------------------------------------------*/
         /*product components for task*/
