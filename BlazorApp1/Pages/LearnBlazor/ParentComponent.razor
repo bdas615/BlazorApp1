@@ -4,7 +4,7 @@
  
 <CascadingValue Value="@MessageForGrandChild">
 
-<_ChildComponent OnButtonClick="ShowMessage" Title="This title is passed as parameter from Parent Component">
+    <_ChildComponent @ref="childComp" OnButtonClick="ShowMessage" Title="This title is passed as parameter from Parent Component">
      
     <ChildContent>Render Fragment from Parent</ChildContent>
     
@@ -19,6 +19,10 @@
 
 <_AnotherChildComponent placeholder="Placeholder from Parent"></_AnotherChildComponent>
 
+<div class="row">
+    <button class="btn btn-success" @onclick="()=>childComp.ToastrSuccess()">Show SweetAlert</button>
+</div>
+
 @*<_ChildComponent Title="Title from second child with no child content">
 </_ChildComponent>*@
 
@@ -29,6 +33,8 @@
     //   { "placeholder", "Enter Name From Parent"},
     //    { "maxlength",5}
     //};
+
+    private _ChildComponent childComp;
 
     public string MessageForGrandChild = "This message is from the grand parent (ParentComponent)";
     public string messageText = "";

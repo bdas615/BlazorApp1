@@ -14,4 +14,4 @@ namespace BlazorApp1.Helper
             await jsRuntime.InvokeVoidAsync("ShowToastr", "error", message);
         }
     }
-}
+} 
